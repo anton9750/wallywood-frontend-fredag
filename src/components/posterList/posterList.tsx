@@ -40,10 +40,15 @@ function PosterList() {
       <Grid>
         {data.map((poster) => (
           <PosterCard
+
             key={poster.id}
+
             title={poster.name}
+
             description={poster.description?.slice(0, 120) ?? ""}
+
             genre={poster.genres.map((genre) => genre.genreId).join(", ")}
+            
             image={poster.image}
           />
         ))}

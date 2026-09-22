@@ -16,12 +16,22 @@ const FilterTitle = styled.h2`
 `;
 
 const Filter = styled.button<{ $active?: boolean }>`
+
   display: block;
+
   border: none;
+
   background: none;
+
+
   padding: 0.3rem 0;
+
   cursor: pointer;
-  font-weight: ${(props) => (props.$active ? "700" : "400")};
+
+
+  font-weight: ${(props) => 
+    
+    (props.$active ? "700" : "400")};
   color: ${(props) => (props.$active ? "#d97757" : "inherit")};
 
   &:hover {
@@ -30,24 +40,35 @@ const Filter = styled.button<{ $active?: boolean }>`
 `;
 
 type GenreFiltersProps = {
+
   genres: Genre[] | null;
+
   selectedGenre: number | null;
+
   onSelect: (genreId: number | null) => void;
 };
 
 function GenreFilters({ genres, selectedGenre, onSelect }: GenreFiltersProps) {
   return (
+
     <Filters>
+
       <FilterTitle>Filtre</FilterTitle>
 
       <Filter $active={selectedGenre === null} onClick={() => onSelect(null)}>
+
         Alle
+
       </Filter>
 
       {genres?.map((genre) => (
+
         <Filter
+
           key={genre.id}
+
           $active={selectedGenre === genre.id}
+          
           onClick={() => onSelect(genre.id)}
         >
           {genre.name}

@@ -13,7 +13,9 @@ const Hero = styled.section`
 const HeroImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  display: flex;
+  align-item: center
 `;
 
 function Home() {

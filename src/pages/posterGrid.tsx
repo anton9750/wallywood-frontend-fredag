@@ -46,7 +46,9 @@ function PosterGrid() {
   }
 
   const filtered = selectedGenre
+
     ? data?.filter((poster) =>
+        
         poster.genres.some((g) => g.genreId === selectedGenre)
       )
     : data;
@@ -54,11 +56,18 @@ function PosterGrid() {
   return (
     <Grid>
       {filtered?.slice(0, 8).map((poster) => (
+
         <PosterLink key={poster.id} to={`/plakater/${poster.id}`}>
+
           <PosterCard
+
             title={poster.name}
+
             description=""
-            genre={poster.genres.map((g) => g.genreId).join(", ")}
+            genre={poster.genres.map((
+
+                g) => g.genreId).join(", ")}
+                
             image={poster.image}
           />
         </PosterLink>
