@@ -1,75 +1,85 @@
-# React + TypeScript + Vite
+# Wallywood – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Wallywood er en webshop for filmplakater, bygget som eksamensprojekt til faget **Avanceret Frontend** (H1WE010126, TechCollege).
 
-Currently, two official plugins are available:
+Brugeren kan browse filmplakater sorteret efter genre, åbne den enkelte plakat for at se flere detaljer, og (under udvikling) lægge plakater i en indkøbskurv.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Teknologier
 
-## React Compiler
+- **React 19** + **TypeScript**
+- **Vite** som build-tool
+- **React Router** til routing
+- **styled-components** til styling
+- Data hentes fra et selvbygget REST API (bygget i faget Dataservice- og integration)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Kom i gang
 
-## Expanding the ESLint configuration
+### Forudsætninger
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [Node.js](https://nodejs.org/) (v18 eller nyere anbefales)
+- Wallywood API'et skal køre lokalt på `http://localhost:3000`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/<dit-brugernavn>/wallywood-frontend-fredag.git
+cd wallywood-frontend-fredag
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### Kør projektet
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Sitet kører herefter på `http://localhost:5173` (standard Vite-port).
+
+### Andre kommandoer
+
+```bash
+npm run build     # Bygger projektet til produktion
+npm run preview   # Kører en lokal preview af build'et
+npm run lint      # Kører ESLint
+```
+
+## Projektstruktur
 
 ```
+src/
+├── assets/                 # Billeder og ikoner
+├── components/
+│   ├── genreFilter/        # Filtrering af plakater efter genre
+│   ├── posterList/
+│   └── types/               # Delte TypeScript-typer
+├── GlobalStyles/            # Tema til styled-components
+├── hooks/
+│   ├── useFetch.tsx          # Generisk hook til at hente data fra API'et
+│   └── userandomposters.tsx
+├── pages/
+│   ├── home.tsx
+│   ├── plakater.tsx           # Oversigt med genre-filter (layout for /plakater)
+│   ├── posterGrid.tsx          # Grid med plakater (indeks-route under /plakater)
+│   ├── posterDetailPage.tsx    # Detaljevisning af en enkelt plakat
+│   ├── om-os.tsx
+│   ├── kontakt.tsx
+│   └── loginpage.tsx
+├── partials/
+│   ├── Navbar.tsx
+│   └── cards.tsx               # Genanvendeligt plakat-kort
+└── App.tsx                     # Routing
+```
+
+## Funktionalitet
+
+- [x] Se plakater i et grid
+- [x] Filtrere plakater efter genre
+- [x] Se detaljer om en enkelt plakat
+- [ ] Lægge plakater i indkøbskurv
+- [ ] Se indholdet af indkøbskurven
+- [ ] Ændre antal / fjerne plakater fra kurven (bonus)
+- [ ] Gemme kurven i localStorage (bonus)
+
+## Hvad jeg ville gøre anderledes
+
+*(Udfyldes senere, til fremlæggelsen.)*
